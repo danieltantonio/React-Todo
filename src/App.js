@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 
@@ -19,6 +21,10 @@ const initToDoList = [
     complete: false
   }
 ];
+
+// const StyledApp {
+//   background: 
+// }
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -43,12 +49,27 @@ class App extends React.Component {
     })
   };
 
+  toggleComplete = (id) => {
+    this.setState({
+      list: this.state.list.map(item => {
+        if(item.id === id) {
+          return {
+            ...item,
+            complete: !item.complete
+          }
+        } else {
+          return item
+        }
+      })
+    })
+  };
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoForm addItem={this.addToList}/>
-        <TodoList list={this.state.list}/>
+        <TodoList list={this.state.list} toggleItem={this.toggleComplete}/>
       </div>
     );
   }
