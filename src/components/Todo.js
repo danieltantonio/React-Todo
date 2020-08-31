@@ -14,7 +14,7 @@ class Todo extends React.Component {
 
     render(){
         return(
-            <StyledItem className='item' onClick={() => this.props.toggleItem(this.props.item.id)}>
+            <StyledItem className={`item${this.props.item.complete}`} onClick={() => this.props.toggleItem(this.props.item.id)}>
                 {this.props.item.name}
             </StyledItem>
         )

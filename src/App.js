@@ -22,9 +22,12 @@ const initToDoList = [
   }
 ];
 
-// const StyledApp {
-//   background: 
-// }
+const StyledApp = styled.div`
+  .itemtrue {
+    background: lightgreen;
+    text-decoration: line-through;
+  }
+`;
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -64,13 +67,19 @@ class App extends React.Component {
     })
   };
 
+  removeComplete = (id) => {
+    this.setState({
+      list: this.state.list.filter(item => !item.complete)
+    })
+  }
+
   render() {
     return (
-      <div>
+      <StyledApp>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm addItem={this.addToList}/>
-        <TodoList list={this.state.list} toggleItem={this.toggleComplete}/>
-      </div>
+        <TodoForm addItem={this.addToList} rmItem={this.removeComplete} list={this.state.list}/>
+        <TodoList list={this.state.list} toggleItem={this.toggleComplete} />
+      </StyledApp>
     );
   }
 }
